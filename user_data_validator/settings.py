@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+
+from decouple import config, Csv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -80,10 +82,10 @@ TEMPLATES = [
 WSGI_APPLICATION = 'user_data_validator.wsgi.application'
 
 # set the celery broker url
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_BROKER_URL = config("CELERY_BROKER_URL")
 
 # set the celery result backend
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = config("CELERY_RESULT_BACKEND")
 
 # set the celery timezone
 CELERY_TIMEZONE = 'UTC'
@@ -93,10 +95,14 @@ CELERY_TIMEZONE = 'UTC'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+'default': {
+'ENGINE': 'django.db.backends.postgresql',
+'NAME': config("DATABASE_NAME"),
+'USER': config("MYUSER"),
+'PASSWORD': config("PASSWORD"),
+'HOST': config('HOST'),
+'PORT': '5432'
+}
 }
 
 

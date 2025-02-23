@@ -41,12 +41,12 @@ def csv_processor_worker(**kwargs):
                 tota_number_of_invalid_record+=1
                 errors = serialiser.errors
                 # Add row number to the error dictionary
-                errors.update({"row":row})
+                errors.update({"error_row":row+2})
                 # Add the error to the list of invalid records 
                 invalid_record.append(errors)
         # Save the report to a JSON file in the project directory
         report = {"Invalid_record":tota_number_of_invalid_record,"valid_record":valid_record,"invalid_record":invalid_record}
-        file_path = os.path.join(settings.MEDIA_ROOT, 'my_json_file.json')
+        file_path = os.path.join(settings.MEDIA_ROOT, 'report.json')
         # Save the report to a JSON file
         with open(file_path, 'w') as json_file:
             # Use indent to make the JSON more readable
