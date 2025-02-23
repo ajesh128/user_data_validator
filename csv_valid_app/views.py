@@ -4,7 +4,7 @@ from .task import csv_processor_worker
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-class ReadCSVView(APIView):
+class UploadCsv(APIView):
     """
     View to upload CSV file and validate JSON data
     """

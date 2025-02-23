@@ -7,8 +7,8 @@ class UserCSVUploadSerializer(serializers.ModelSerializer):
     Serializer for the User model.
     """
     name = serializers.CharField(required = True)
-    email = serializers.EmailField()
-    age = serializers.IntegerField()
+    email = serializers.EmailField(required = True)
+    age = serializers.IntegerField(required = True)
     class Meta:
         model = User
         fields = ['name', 'email',"age"]
@@ -32,6 +32,7 @@ class UserCSVUploadSerializer(serializers.ModelSerializer):
             # raise a validation error if the email already exists in the database
             raise serializers.ValidationError("Duplicate")
         return value
+    
     
 
 

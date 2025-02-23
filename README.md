@@ -25,13 +25,18 @@ pip install -r requirements.txt
     celery==5.4.0
     coverage==7.6.12
 
-## How to set up/ run application
-    > Clone the repository by this link https://github.com/ajesh128/csv-upload-validator.git
+## How to set up/ run application without using Docker
+    > Clone the repository by this link https://github.com/ajesh128/user_data_validator.git
     > Install all the requirements using the command "pip install -r requirements.txt"
     > python manage.py runserver
 
+## With using Docker ,application run as follows
+    > docker compose down 
+    > docker compose build
+    > docker compose up
+
 ## Usage
-    > A post request is there to handle the csv data (upload/csv/data)
+    > A post request is there to handle the csv data (upload/csv).It will check the file content type,it will block all other file of not having csv extensiion.If the file is csv it is then send to background worker to process the data.
 
 ## Creating .env file
 cp dotenv.sample .env
@@ -44,5 +49,11 @@ Celery is needed for background tasks.
 Follow the url and install and configure rabbitMQ which the message broker url for celery.
 https://redis.io/docs/latest/operate/oss_and_stack/install/install-redis/
 
-```
 celery -A user_data_validator worker --loglevel=INFO
+
+### For Running Test
+    > coverage run manage.py test
+### To get coverage report
+    > coverage report -m
+
+

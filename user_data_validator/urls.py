@@ -19,5 +19,5 @@ from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", include('csv_valid_app.urls'))
+    path("upload/", include('csv_valid_app.urls'))
 ]
