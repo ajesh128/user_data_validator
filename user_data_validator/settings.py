@@ -36,7 +36,6 @@ CELERY_TASK_EAGER_PROPAGATES = True
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 if not os.path.exists(MEDIA_ROOT) :
     os.makedirs(MEDIA_ROOT)
-os.chmod(MEDIA_ROOT,0o777)
 
 
 # Application definition
